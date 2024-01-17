@@ -2,7 +2,7 @@
 
 ## It's not done yet, so enjoy beta dotfiles :)
 
-## Included:
+# Included:
 - Hyprland config
 - Hyprpaper config
 - Eww config
