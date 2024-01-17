@@ -12,5 +12,9 @@
 - Zsh theme (for OhMyZSH)
 - Neovim config
 
+# Fonts that i use:
+- Fire Code Nerd Font
+- Ubuntu Nerd Font
+
 # Screenshots:
 ![Screenshots](rice.png)
