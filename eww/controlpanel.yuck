@@ -1,0 +1,19 @@
+(defwidget controlpanel []
+  (box
+    (label :text "will be implemented in newer updates")
+    (eventbox :onclick "eww open --toggle controlpanel"
+      (label :text "")
+    )
+  )
+)
+
+(defwindow controlpanel
+    :monitor 0
+    :windowtype "dock"
+    :geometry (geometry :x "0%"
+                        :y "0%"
+			:width "500px"
+			:height "93.8%"
+		        :anchor "bottom right")
+    (controlpanel)
+)

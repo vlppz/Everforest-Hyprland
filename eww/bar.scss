@@ -1,0 +1,141 @@
+.bar {
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.workspaces-widget {
+  padding-left: 10px;
+  padding-right: 5px;
+
+  background-color: #272e33;
+  border-radius: 5px;
+}
+
+.workspace-entry {
+  margin-right: 5px;
+}
+
+.occupied {
+  font-size: 15px;
+  color: #7a8478;
+}
+
+.empty {
+  font-size: 15px;
+  color: #7a8478;
+}
+
+.current {
+  font-size: 17px;
+  color: #a7c080;
+}
+
+.iconbox {
+  border-radius: 5px;
+  padding-right: 10px;
+  padding-left: 11px;
+  background-color: #3c4841;
+  margin-right: 5px;
+}
+
+.icon {
+  color: #a7c080;
+  font-size: 17px
+}
+
+.sidebar-btn {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  background-color: #493b40;
+}
+
+.sidebar-btn-label {
+  color: #e69875;
+}
+
+.time-widget {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #272e33;
+}
+
+.time-icon {
+  color: #a7c080;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.wifi-widget {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #2e383c;
+}
+
+.wifi-icon {
+  color: #83c092;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.battery-widget {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  background-color: #272e33;
+}
+
+.battery-icon {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.battery-low {
+  color: #e67e80;
+}
+
+.battery-med {
+  color: #dbbc7d
+}
+
+.battery-high {
+  color: #a7c080;
+}
+
+.volume-widget {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #2e383c;
+}
+
+.volume-icon {
+  color: #7fbbb3;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.volume-margin {
+  margin-left: 5px;
+}
+
+.volume-bar trough highlight {
+  all: unset;
+  background-color: #7fbbb3;
+  border-radius: 5px;
+  min-width: 70px;
+}
+
+.tray {
+  background-color: #2e383c;
+  margin-right: 10px;
+  border-radius: 5px;
+}

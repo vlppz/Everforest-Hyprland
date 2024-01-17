@@ -1,0 +1,112 @@
+(defwidget bar []
+  (box :class "main" :space-evenly true
+    (left)
+    (right)
+  )
+)
+
+(defwidget left []
+  (box :space-evenly false
+    (icon)
+    (workspaces)
+  )
+)
+
+(defwidget right []
+  (box :space-evenly false :halign "end"
+    (volume)
+    (battery)
+    (wifi)
+    (time)
+    (systray :class "tray")
+    (sidebar-btn)
+  )
+)
+
+(defwidget icon []
+  (eventbox :onclick "rofi -show drun &" 
+    (box :space-evenly false :class "iconbox"
+      (label :class "icon" :text "")
+    )
+  )
+)
+
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}"
+    (box :space-evenly false :class "workspaces-widget"
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :class "workspaces-elements-box"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id == current_workspace ? "󰮯" : ""}")
+            )
+          )
+        )
+      )
+    )
+)
+
+
+(defpoll current-vol :interval "1s" "awk -F\"[][]\" '/Left:/ { print $2 }' <(amixer sget Master) | tr -d \"%\"")
+(defvar volume-state false)
+(defwidget volume []
+  (eventbox :onhover "eww update volume-state=true" :onhoverlost "eww update volume-state=false"
+    (box :space-evenly false :class "volume-widget"
+      (label :class "volume-icon" :text "")
+      (label :text "${volume-state ? "" : "${current-vol}%"}")
+      (revealer :transition "slideright" :reveal volume-state :duration "500ms"
+        (box :class "volume-margin"
+          (scale :class "volume-bar" :value current-vol :orientation "h" :max 101 :min 0 :onchange "amixer sset Master {}%" :tooltip "${current-vol}%")
+        )
+      )
+    )
+  )
+)
+
+(defpoll time :interval "1s" "date '+%b %d, %H:%M'")
+(defwidget time []
+  (box :space-evenly false :class "time-widget"
+    (label :class "time-icon" :text "")
+    (label :text "${time}")
+  )
+)
+
+(defwidget sidebar-btn []
+  (eventbox :onclick "eww open --toggle controlpanel"
+    (box :space-evenly false :class "sidebar-btn"
+      (label :class "sidebar-btn-label" :text "")
+    )
+  )
+)
+
+(defpoll wifi-name :interval "1s" "nmcli -t -f NAME connection show --active | awk 'NR==1 {print}'")
+(defwidget wifi []
+  (eventbox :onclick "kitty -e nmtui &"
+    (box :space-evenly false :class "wifi-widget"
+      (label :class "wifi-icon" :text "󰤨")
+      (label :text "${wifi-name}")
+    )
+  )
+)
+
+(defpoll current_state :interval "1s" "~/.config/eww/scripts/battery.sh")
+(defpoll current_percentage :interval "1s" "upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E \"percentage\" | awk '{split($2, a, \".\"); print a[1]}'")
+
+(defwidget battery []
+  (box :space-evenly false :class "battery-widget"
+    (label :class "battery-icon ${current_state <= 25 ? 'battery-low' : '${current_state <= 50 ? 'battery-med' : '${current_state <= 100 ? 'battery-high' : ''}'}'}" :text "${current_state <= 15 ? '󰂎' : '${current_state <= 25 ? '󰁻' : '${current_state <= 50 ? '󰁾' : '${current_state <= 75 ? '󰂀' : '${current_state <= 95 ? '󰁹' : '󰁹'}'}'}'}'}")
+    (label :text "${current_percentage}%")
+  )
+)
+
+(defwindow bar
+    :monitor 0
+    :windowtype "dock"
+    :geometry (geometry :x "0%"
+                        :y "0%"
+			:width "100%"
+			:height "40px"
+			:anchor "top center")
+    (bar))
