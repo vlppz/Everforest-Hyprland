@@ -1,4 +1,4 @@
-# Everforest-Hyprland
+# Hyprland Everforest rice
 
 ## It's not done yet, so enjoy beta dotfiles :)
 
