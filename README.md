@@ -2,5 +2,5 @@
 
 ## It's not done yet, so enjoy beta dotfiles :)
 
-## Screenshot:
-![Screenshot](rice.png)
+## Screenshots:
+![Screenshots](rice.png)
