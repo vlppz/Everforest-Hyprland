@@ -13,7 +13,7 @@
 - Neovim config
 
 # Fonts that i use:
-- Fire Code Nerd Font
+- Fira Code Nerd Font
 - Ubuntu Nerd Font
 
 # Screenshots:
